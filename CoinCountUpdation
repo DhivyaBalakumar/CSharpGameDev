@@ -1,0 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class coincollector : MonoBehaviour
+{
+    public TextMeshProUGUI coinText;
+
+    public int coincount = 0;
+    Animator anim;
+    // Start is called before the first frame update
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+        coinText.text = "Coin:" + coincount;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        coinText.text = "Coin:" + coincount;
+        Debug.Log(coincount);
+
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "coin")
+        {
+            coincount++;
+            Destroy(collision.gameObject);
+        }
+
+    }
+
+}
